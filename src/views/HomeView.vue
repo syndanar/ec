@@ -50,11 +50,12 @@ export default class HomeView extends Vue {
 
   exchangeRate = 70;
 
-  public mounted() {
-    this.fetchData();
-  }
-
-  async fetchData() {
+  public async mounted() {
+    /**
+     * Если требуется обновления данных каждые 15 секунд, можно установить интрвал тут.
+     * Но не ясна цель обновления статичных данных.
+     * Если для обновления модели по установленному курсу, то мне кажется - это bad practice.
+     */
     await GoodsStore.fetchGoods();
     await GoodsStore.fetchNames();
   }
