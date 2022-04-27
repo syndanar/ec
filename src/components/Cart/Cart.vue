@@ -24,6 +24,7 @@
             v-model="item.count"
             placeholder="Кол-во"
             type="number"
+            @change="checkCount(item)"
             :id="`cart-item-count-${item.item.itemId}`"
           /> шт.
         </label>
@@ -50,6 +51,7 @@
 
     <div
       class="cart__footer"
+      v-if="totalPrice > 0"
     >
       Общая стоиомсть: <span class="totalPrice">{{ totalPrice.toFixed(2) }} руб.</span>
     </div>
@@ -73,6 +75,12 @@ export default class CartComponent extends Vue {
 
   deleteItem(item: CartItemType) {
     this.$emit('delete-item', item);
+  }
+
+  checkCount(item: CartItemType) {
+    if (item.count < 1) {
+      this.deleteItem(item);
+    }
   }
 
   get totalPrice(): number {

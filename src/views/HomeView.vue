@@ -83,7 +83,7 @@ export default class HomeView extends Vue {
   putInCart(item: ItemModel) {
     const cartItem = this.cartItems.find((v) => v.item === item);
     if (cartItem) {
-      cartItem.count += 1;
+      cartItem.count = Number(cartItem.count) + 1;
     } else {
       this.cartItems.push({
         item,
