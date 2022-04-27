@@ -1,0 +1,1 @@
+export const CURRENCY_RELOAD_TIME = 1500;
